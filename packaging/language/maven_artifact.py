@@ -332,9 +332,7 @@ def main():
     if os.path.isdir(dest):
         dest = dest + "/" + artifact_id + "-" + version + "." + extension
     if os.path.lexists(dest):
-        if not artifact.is_snapshot():
-            prev_state = "present"
-        elif downloader.verify_md5(dest, downloader.find_uri_for_artifact(artifact) + '.md5'):
+        if downloader.verify_md5(dest, downloader.find_uri_for_artifact(artifact) + '.md5'):
             prev_state = "present"
     else:
         path = os.path.dirname(dest)
